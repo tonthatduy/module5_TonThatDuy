@@ -13,6 +13,7 @@ class StudentListComponent extends Component {
                 address: ""
             },
             isEditing: false,
+            isValid: false,
         };
     }
 
@@ -29,14 +30,15 @@ class StudentListComponent extends Component {
         const {name, value} = e.target;
         this.setState({
             form: {...this.state.form, [name]: value}
-        })
+        }, this.checkInvalidForm)
     };
     handleUpdate = () => {
         updateStudent(this.state.form)
         this.setState({
             students: getAll(),
             form: {id: null, name: "", age: "", address: ""},
-            isEditing: false
+            isEditing: false,
+            isValid: false
         });
 
 
@@ -46,13 +48,14 @@ class StudentListComponent extends Component {
         this.setState({
             students: getAll(),
             form: {id: null, name: "", age: "", address: ""},
+            isValid: false
         });
     };
     handleEdit = (student) => {
         this.setState({
             form: {...student},
             isEditing: true
-        })
+        }, this.checkInvalidForm);
 
     };
     handleDelete = (id) => {
@@ -61,6 +64,17 @@ class StudentListComponent extends Component {
             students: getAll()
         });
     };
+    checkInvalidForm = () => {
+        const {name, age, address} = this.state.form;
+        const isValid =
+            name.trim() !== "" &&
+            String(age).trim() !== "" &&
+            address.trim() !== "" &&
+            !isNaN(age) &&
+            Number(age) > 0;
+
+        this.setState({isValid});
+    }
 
 
     render() {
@@ -77,9 +91,9 @@ class StudentListComponent extends Component {
                     <input name="address" placeholder="Nhập địa chỉ sinh viên" value={address}
                            onChange={this.handleChange}/>
                     {this.state.isEditing ? (
-                        <button onClick={() => this.handleUpdate()}>Cập Nhập</button>
+                        <button onClick={() => this.handleUpdate()} disabled={!this.state.isValid}>Cập Nhập</button>
                     ) : (
-                        <button onClick={() => this.handleAdd()}>Thêm</button>
+                        <button onClick={() => this.handleAdd()} disabled={!this.state.isValid}>Thêm</button>
                     )}
                 </div>
 
