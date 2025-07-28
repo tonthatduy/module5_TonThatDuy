@@ -11,7 +11,11 @@ const ListComponent = () => {
     const [isShowModal, setIsShowModal] = useState(false);
     const [deleteStudent, setDeleteStudent] = useState({id: "", name: ""});
     useEffect(() => {
-        setStudentList([...getAll()])
+        const fetchData = async () => {
+            const result = await getAll();
+            setStudentList(result);
+        }
+        fetchData().then(r => console.log("Lỗi: ", r));
     }, [isShowModal]);
     const handleShowModal = (student) => {
         setIsShowModal(pre => !pre);
@@ -50,6 +54,9 @@ const ListComponent = () => {
                     </td>
                     <td>
                         <button onClick={() => handleShowModal(s)}>Delete</button>
+                    </td>
+                    <td>
+                        <Link to={`/update/${s.id}`}>Update</Link>
                     </td>
                 </tr>
             ))}

@@ -1,0 +1,99 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Huy",
+      "gender": true,
+      "subject": [
+        "Js"
+      ],
+      "classCG": {
+        "id": 4,
+        "name": "C05"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Duyy",
+      "gender": true,
+      "subject": [
+        "Js",
+        "Java"
+      ],
+      "classCG": {
+        "id": 4,
+        "name": "C05"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Duyyy",
+      "gender": true,
+      "subject": [
+        "Js",
+        "Java"
+      ],
+      "classCG": {
+        "id": 2,
+        "name": "C03"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Duyyyy",
+      "gender": true,
+      "subject": [
+        "Js",
+        "Java"
+      ],
+      "classCG": {
+        "id": 1,
+        "name": "C02"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Duyyyyy",
+      "gender": true,
+      "subject": [
+        "Js",
+        "Java"
+      ],
+      "classCG": {
+        "id": 3,
+        "name": "C06"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Binh",
+      "gender": false,
+      "subject": [
+        "Java",
+        "SQL"
+      ],
+      "classCG": {
+        "id": 1,
+        "name": "C02"
+      }
+    }
+  ],
+  "classCG": [
+    {
+      "id": 1,
+      "name": "C02"
+    },
+    {
+      "id": 2,
+      "name": "C03"
+    },
+    {
+      "id": 3,
+      "name": "C06"
+    },
+    {
+      "id": 4,
+      "name": "C05"
+    }
+  ]
+}

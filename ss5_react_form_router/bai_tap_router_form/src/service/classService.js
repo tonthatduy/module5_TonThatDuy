@@ -1,3 +1,5 @@
+import axios from "axios";
+
 let classList = [
     {
         id: "1",
@@ -17,6 +19,12 @@ let classList = [
     }
 ]
 
-export function getClassAll() {
-    return classList;
+export async function getClassAll() {
+    try {
+        const resp = await axios.get("http://localhost:3001/classCG");
+        return resp.data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }

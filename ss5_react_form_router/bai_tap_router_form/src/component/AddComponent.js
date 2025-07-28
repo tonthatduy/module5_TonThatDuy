@@ -21,32 +21,36 @@ const AddComponent = () => {
         });
     const [classList, setClassList] = useState([]);
     useEffect(() => {
-        setClassList(getClassAll)
+        const fetchData = async () => {
+            const result = await getClassAll();
+            setClassList(result)
+        }
+        fetchData().then(r => console.log("Lỗi:", r));
     }, []);
-    const handleAdd = (value) => {
+    const handleAdd = async (value) => {
         value = {
             ...value,
             classCG: JSON.parse(value.classCG)
         }
-        addNew(value);
+        await addNew(value);
         navigate("/");
         toast.success("Thêm Mới Thành Công");
     };
     const handleValidate = Yup.object({
-        id: Yup.string().required("Yêu cầu không được để trống"),
-        name:Yup.string().required("Không được để trống")
+        // id: Yup.string().required("Yêu cầu không được để trống"),
+        name: Yup.string().required("Không được để trống")
             .matches(/^[A-Z]\w+$/),
-        classCG:Yup.string().required("Không được để trống")
+        classCG: Yup.string().required("Không được để trống")
     });
 
     return <>
         <Formik initialValues={student} onSubmit={handleAdd} validationSchema={handleValidate}>
             <Form>
-                <div>
-                    <label>ID</label>
-                    <Field type="text" name="id"/>
-                    <ErrorMessage name="id" component={"div"} style={{color: "red"}}/>
-                </div>
+                {/*<div>*/}
+                {/*    <label>ID</label>*/}
+                {/*    <Field type="text" name="id"/>*/}
+                {/*    <ErrorMessage name="id" component={"div"} style={{color: "red"}}/>*/}
+                {/*</div>*/}
                 <div>
                     <label>Name</label>
                     <Field type="text" name="name"/>

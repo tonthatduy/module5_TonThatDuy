@@ -15,7 +15,11 @@ const DetailComponent = () => {
     })
     const {id} = useParams();
     useEffect(() => {
-        setStudent(findById(id));
+        const fetchData = async () => {
+            const result = await findById(id);
+            setStudent(result);
+        }
+        fetchData().then(r => console.log("Lỗi:", r));
     }, []);
     return <>
         <h2>Detail</h2>
@@ -23,7 +27,7 @@ const DetailComponent = () => {
         <p>Name:{student.name}</p>
         <p>Gender:{student.gender}</p>
         <p>Subject:{student.subject}</p>
-        <p>Class Name:  {student.classCG.name}</p>
+        <p>Class Name: {student.classCG.name}</p>
     </>
 }
 export default DetailComponent;

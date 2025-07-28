@@ -4,8 +4,8 @@ import React from "react";
 
 const DeleteComponent = ({isShowModal, handleCloseModal, deleteStudent}) => {
 
-    const handleDelete = () => {
-        deleteById(deleteStudent.id);
+    const handleDelete = async () => {
+        await deleteById(deleteStudent.id);
         handleCloseModal();
     }
     return <>
