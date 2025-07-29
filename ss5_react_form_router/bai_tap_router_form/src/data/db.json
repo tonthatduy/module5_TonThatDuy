@@ -95,5 +95,17 @@
       "id": 4,
       "name": "C05"
     }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "username": "duy123",
+      "password": "123"
+    },
+    {
+      "id" : 2,
+      "username": "beo123",
+      "password": "123"
+    }
   ]
 }

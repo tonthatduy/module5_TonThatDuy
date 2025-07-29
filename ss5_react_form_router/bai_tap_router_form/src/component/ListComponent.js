@@ -4,8 +4,12 @@ import {Link} from "react-router-dom";
 import DeleteComponent from "./DeleteComponent";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js'
+import {useDispatch, useSelector} from "react-redux";
+import {logoutAction1} from "../redux/action/action";
 
 const ListComponent = () => {
+    const account1 = useSelector(state => state.login);
+    const dispatch = useDispatch()
     const [studentList, setStudentList] = useState([]);
     // const [isLoading, setIsLoading] = useState(false);
     const [isShowModal, setIsShowModal] = useState(false);
@@ -24,9 +28,18 @@ const ListComponent = () => {
     const handleCloseModal = useCallback(() => {
         setIsShowModal(pre => !pre);
     }, []);
+
+    const handelLogout = () => {
+        dispatch(logoutAction1());
+    }
     return <>
         <h2>Quản lí Danh sách học sinh</h2>
-        <Link to={"/add"}>Add </Link>
+            <Link to={"/add"}>Add </Link>
+        <div>
+            {!account1 && <Link to={"/login"}>Login</Link>}
+            <a className="nav-link text-danger ">{account1?.username}</a>
+            {account1 && <button onClick={handelLogout} className="btn btn-link ">Logout</button>}
+        </div>
         <table border="1">
             <thead>
             <tr>
